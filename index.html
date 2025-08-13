@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>天猫新品牌运营5力自测表</title>
+<!-- 仅用于绘图；如需离线使用，可改为内嵌或本地文件 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#000; --muted:#4a4a4a; --border:#e6e8eb;
+    --primary:#1677ff; --primary-hover:#0e5ed2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+       color:var(--text); background:var(--bg)}
+  header{background:#fff; border-bottom:1px solid var(--border); padding:18px 16px; text-align:center}
+  header h1{margin:0; font-size:20px}
+  .sub{margin:6px 0 0; color:#666; font-size:12px}
+  main{max-width:980px; margin:18px auto 48px; padding:0 16px}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:14px}
+  .section-title{margin:0 0 10px; font-size:18px}
+  .q{margin:12px 0; padding:12px; border:1px solid #f0f0f0; border-radius:10px; background:#fafbfc}
+  .q-title{font-size:16px; color:#000; font-weight:700; margin:0 0 6px}
+  .desc{font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:8px}
+  input[type=text]{width:100%; padding:12px; border:1px solid #d2d6db; border-radius:10px; font-size:16px}
+  .ops{display:flex; gap:10px; flex-wrap:wrap}
+  .pill{position:relative; display:inline-flex; align-items:center; gap:8px;
+        padding:10px 14px; border-radius:999px; background:#fff; border:1px solid #e5e7eb;
+        cursor:pointer; user-select:none; font-size:16px; color:#000}
+  .pill input{appearance:none; width:18px; height:18px; border:2px solid #9aa0a6; border-radius:50%; display:inline-block}
+  .pill input:checked{border-color:var(--primary); box-shadow:inset 0 0 0 5px var(--primary)}
+  .pill:hover{border-color:#c4c9cf}
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+  button{appearance:none; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700}
+  .primary{background:var(--primary); color:#fff}
+  .primary:hover{background:var(--primary-hover)}
+  .ghost{background:#eef2ff}
+  .danger{background:#fee2e2}
+  .result{padding:14px; border-radius:10px; background:#f8fafc; border:1px dashed #cdd5df; margin-top:10px}
+  .viz{display:grid; grid-template-columns:1.1fr .9fr; gap:14px}
+  @media (max-width:900px){.viz{grid-template-columns:1fr}}
+  .subscore{display:grid; gap:8px}
+  .rowline{display:flex; justify-content:space-between; padding:8px 10px; background:#fff; border:1px solid #eee; border-radius:8px}
+  .total-line{margin-top:10px; font-weight:700; font-size:16px}
+  .disclaimer{font-size:12px; color:#666; margin-top:4px}
+  .req{color:#e11d48; font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <h1>天猫新品牌运营5力自测表</h1>
+  <p class="sub">本页不做任何数据抓取，商家先在千牛/生意参谋自行取数后选择对应分值。</p>
+</header>
+
+<main>
+  <!-- 品牌 -->
+  <div class="card">
+    <h2 class="section-title">一、品牌信息</h2>
+    <div class="q">
+      <div class="q-title">1）您的品牌全称？ <span class="req">*</span></div>
+      <input id="brand" type="text" placeholder="如：***旗舰店" />
+    </div>
+  </div>
+
+  <!-- 二、综合运营力 -->
+  <div class="card">
+    <h2 class="section-title">二、综合运营力</h2>
+
+    <div class="q" data-group="综合运营力">
+      <div class="q-title">【综合运营—商品体验】</div>
+      <div class="desc">定义：商品PXI评分，TOP1–TOP5链接的平均分<br>取数：千牛 → 店铺 → 店铺管理 → 真实体验分 → 商品体验分（当前即时数据）</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_co_1" value="1">1（&lt;80）</label>
+        <label class="pill"><input type="radio" name="q_co_1" value="3">3（≥80）</label>
+        <label class="pill"><input type="radio" name="q_co_1" value="5">5（≥80）</label>
+      </div>
+    </div>
+
+    <div class="q" data-group="综合运营力">
+      <div class="q-title">【综合运营—商品基建】</div>
+      <div class="desc">定义：店铺内TOP20%商品质量平均分<br>取数：千牛 → 商品 → 商品管理 → 我的商品（当前即时数据）</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_co_2" value="0">0（&lt;80）</label>
+        <label class="pill"><input type="radio" name="q_co_2" value="1">1（≥80）</label>
+        <label class="pill"><input type="radio" name="q_co_2" value="3">3（≥85）</label>
+        <label class="pill"><input type="radio" name="q_co_2" value="5">5（≥90）</label>
+      </div>
+    </div>
+
+    <div class="q" data-group="综合运营力">
+      <div class="q-title">【综合运营—服务能力】</div>
+      <div class="desc">定义：真实体验分<br>取数：千牛 → 店铺 → 店铺管理 → 真实体验分（当前即时数据）</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_co_3" value="0">0（全绿）</label>
+        <label class="pill"><input type="radio" name="q_co_3" value="1">1（2绿）</label>
+        <label class="pill"><input type="radio" name="q_co_3" value="3">3（1绿）</label>
+        <label class="pill"><input type="radio" name="q_co_3" value="5">5（全红）</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三、流量运营力 -->
+  <div class="card">
+    <h2 class="section-title">三、流量运营力</h2>
+
+    <div class="q" data-group="流量运营力">
+      <div class="q-title">【流量运营—免费流量效率】</div>
+      <div class="desc">定义：近30天免费流量占全店流量比例（如手淘搜索）<br>取数：生意参谋 → 流量 → 店铺来源 → 30天 → 平台流量/全店流量</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_tr_1" value="0">0（&lt;20%）</label>
+        <label class="pill"><input type="radio" name="q_tr_1" value="1">1（≤20%）</label>
+        <label class="pill"><input type="radio" name="q_tr_1" value="3">3（≥50%）</label>
+        <label class="pill"><input type="radio" name="q_tr_1" value="5">5（≥70%）</label>
+      </div>
+    </div>
+
+    <div class="q" data-group="流量运营力">
+      <div class="q-title">【流量运营—全店销售达成/费比】</div>
+      <div class="desc">定义：近半年全店月度销售额目标及花费整体达成情况<br>取数：生意参谋（首页销售额）；万相台无界 → 报表 → 花费</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_tr_2" value="0">0（销售额未达成且费比超）</label>
+        <label class="pill"><input type="radio" name="q_tr_2" value="3">3（仅达成其一）</label>
+        <label class="pill"><input type="radio" name="q_tr_2" value="5">5（两者均达成）</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 四、货品运营力 -->
+  <div class="card">
+    <h2 class="section-title">四、货品运营力</h2>
+
+    <div class="q" data-group="货品运营力">
+      <div class="q-title">【货品运营—H3&H4爆品成交占比】</div>
+      <div class="desc">定义：近30天H3&H4爆品成交金额占全店成交比例<br>取数：千牛 → 商品 → 商品运营 → 爆品成长</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_mer_1" value="0">0（&lt;30%）</label>
+        <label class="pill"><input type="radio" name="q_mer_1" value="3">3（均值≥30%）</label>
+        <label class="pill"><input type="radio" name="q_mer_1" value="5">5（≥50%）</label>
+      </div>
+    </div>
+
+    <div class="q" data-group="货品运营力">
+      <div class="q-title">【货品运营—H3&H4爆品数量】</div>
+      <div class="desc">取数：千牛 → 商品 → 商品运营 → 爆品成长（当前即时数据）</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_mer_2" value="0">0（0款）</label>
+        <label class="pill"><input type="radio" name="q_mer_2" value="1">1（≥1款）</label>
+        <label class="pill"><input type="radio" name="q_mer_2" value="3">3（≥3款）</label>
+        <label class="pill"><input type="radio" name="q_mer_2" value="5">5（≥5款）</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 五、用户运营力 -->
+  <div class="card">
+    <h2 class="section-title">五、用户运营力</h2>
+
+    <div class="q" data-group="用户运营力">
+      <div class="q-title">【用户运营—会员成交占比】</div>
+      <div class="desc">定义：近30天会员成交金额占全店成交比例<br>取数：生意参谋 → 客户 → 会员分析</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_usr_1" value="0">0（&lt;30%）</label>
+        <label class="pill"><input type="radio" name="q_usr_1" value="1">1（≥30%）</label>
+        <label class="pill"><input type="radio" name="q_usr_1" value="3">3（≥40%）</label>
+        <label class="pill"><input type="radio" name="q_usr_1" value="5">5（≥50%）</label>
+      </div>
+    </div>
+
+    <div class="q" data-group="用户运营力">
+      <div class="q-title">【用户运营—老客成交占比】</div>
+      <div class="desc">定义：近30天老客成交金额占全店成交比例<br>取数：生意参谋（首页 → 老客复购金额）</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_usr_2" value="0">0（&lt;20%）</label>
+        <label class="pill"><input type="radio" name="q_usr_2" value="1">1（≥20%）</label>
+        <label class="pill"><input type="radio" name="q_usr_2" value="3">3（≥30%）</label>
+        <label class="pill"><input type="radio" name="q_usr_2" value="5">5（≥50%）</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 六、内容运营力 -->
+  <div class="card">
+    <h2 class="section-title">六、内容运营力</h2>
+
+    <div class="q" data-group="内容运营力">
+      <div class="q-title">【内容运营—站内视频流量占比】</div>
+      <div class="desc">取数：近30天 生意参谋 → 内容概况 → 内容全局表现 → 短视频引导访客数 / 全店访客数</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_cnt_1" value="0">0（&lt;10%）</label>
+        <label class="pill"><input type="radio" name="q_cnt_1" value="1">1（≥10%）</label>
+        <label class="pill"><input type="radio" name="q_cnt_1" value="3">3（≥20%）</label>
+        <label class="pill"><input type="radio" name="q_cnt_1" value="5">5（≥30%）</label>
+      </div>
+    </div>
+
+    <div class="q" data-group="内容运营力">
+      <div class="q-title">【内容运营—站内视频种草成交占比】</div>
+      <div class="desc">取数：近30天 生意参谋 → 内容概况 → 内容全局表现 → 短视频种草成交 / 全店成交金额</div>
+      <div class="ops">
+        <label class="pill"><input type="radio" name="q_cnt_2" value="0">0（&lt;5%）</label>
+        <label class="pill"><input type="radio" name="q_cnt_2" value="1">1（≥5%）</label>
+        <label class="pill"><input type="radio" name="q_cnt_2" value="3">3（≥15%）</label>
+        <label class="pill"><input type="radio" name="q_cnt_2" value="5">5（≥30%）</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作 & 结果 -->
+  <div class="card">
+    <div class="actions">
+      <button class="primary" id="btnCalc">提交评分</button>
+      <button class="ghost" id="btnReset" type="button">清空重填</button>
+    </div>
+    <div id="result" class="result" style="display:none"></div>
+    <div class="disclaimer">声明：本页面不采集任何账号/经营数据；所有分值均由用户自行根据平台口径选择。</div>
+  </div>
+
+  <div class="viz" id="vizWrap" style="display:none">
+    <div class="card">
+      <h3 class="section-title">五角风玫瑰图（各运营力得分）</h3>
+      <canvas id="rose" height="320"></canvas>
+      <div id="totalLine" class="total-line"></div>
+    </div>
+    <div class="card">
+      <h3 class="section-title">分方向分数</h3>
+      <div class="subscore" id="subscore"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // —— 分组（仅做加总与展示，不做任何业务口径计算）——
+  const groups = {
+    "综合运营力": ["q_co_1","q_co_2","q_co_3"],   // max 15
+    "流量运营力": ["q_tr_1","q_tr_2"],           // max 10
+    "货品运营力": ["q_mer_1","q_mer_2"],         // max 10
+    "用户运营力": ["q_usr_1","q_usr_2"],         // max 10
+    "内容运营力": ["q_cnt_1","q_cnt_2"]          // max 10
+  };
+  const maxByGroup = { "综合运营力":15, "流量运营力":10, "货品运营力":10, "用户运营力":10, "内容运营力":10 };
+  const MAX_TOTAL = 55;
+  const allNames = Object.values(groups).flat();
+
+  function getRadioValue(name){
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? Number(el.value) : null;
+  }
+  function sum(arr){ return arr.reduce((a,b)=>a+b,0) }
+
+  function computeScores(){
+    const brand = document.getElementById('brand').value.trim();
+    if(!brand) throw new Error("请填写品牌全称（如：***旗舰店）。");
+    for(const n of allNames){
+      if(getRadioValue(n)===null){
+        document.querySelector(`[name="${n}"]`).closest('.q').scrollIntoView({behavior:'smooth', block:'center'});
+        throw new Error("还有题目未作答，请完成所有题目后再提交。");
+      }
+    }
+    const details = {};
+    for(const [g, list] of Object.entries(groups)){
+      details[g] = sum(list.map(getRadioValue));
+    }
+    const total = Object.values(details).reduce((a,b)=>a+b,0);
+    return { brand, details, total };
+  }
+
+  // ——— 结果渲染：风玫瑰图（polarArea）+ 总分 ———
+  let roseChart = null;
+
+  function render(res){
+    const percent = Math.round(res.total / MAX_TOTAL * 100);
+    const result = document.getElementById('result');
+    result.style.display='block';
+    result.innerHTML = `<b>品牌：</b>${escapeHtml(res.brand)}<br><b>总分：</b>${res.total} / ${MAX_TOTAL}（达成率 ${percent}%）`;
+
+    // 分方向列表
+    const sub = document.getElementById('subscore');
+    sub.innerHTML = '';
+    Object.entries(res.details).forEach(([k,v])=>{
+      const pct = Math.round(v / maxByGroup[k] * 100);
+      const row = document.createElement('div');
+      row.className='rowline';
+      row.innerHTML = `<span>${k}</span><span>${v} / ${maxByGroup[k]} · ${pct}%</span>`;
+      sub.appendChild(row);
+    });
+
+    // 风玫瑰图
+    const ctx = document.getElementById('rose').getContext('2d');
+    if(roseChart) roseChart.destroy();
+    roseChart = new Chart(ctx, {
+      type: 'polarArea',
+      data: {
+        labels: Object.keys(res.details),
+        datasets: [{ label: '各运营力分数', data: Object.values(res.details), borderWidth:1 }]
+      },
+      options: {
+        responsive:true,
+        scales: { r: { beginAtZero:true, suggestedMax:10, ticks:{stepSize:2} } },
+        plugins: { legend:{ position:'right' } }
+      }
+    });
+
+    document.getElementById('totalLine').textContent = `总分：${res.total} / ${MAX_TOTAL}`;
+    document.getElementById('vizWrap').style.display='grid';
+  }
+
+  // ——— 事件 ———
+  document.getElementById('btnCalc').addEventListener('click', (e)=>{
+    e.preventDefault();
+    try{
+      const res = computeScores();
+      render(res);
+      document.getElementById('vizWrap').scrollIntoView({behavior:'smooth', block:'start'});
+    }catch(err){ alert(err.message || err); }
+  });
+
+  document.getElementById('btnReset').addEventListener('click', ()=>{
+    if(!confirm('确认清空所有作答并重置页面？')) return;
+    document.getElementById('brand').value='';
+    document.querySelectorAll('input[type=radio]').forEach(i=>i.checked=false);
+    if(roseChart){ roseChart.destroy(); roseChart=null; }
+    document.getElementById('result').style.display='none';
+    document.getElementById('vizWrap').style.display='none';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+</script>
+</body>
+</html>
